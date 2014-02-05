@@ -35,7 +35,7 @@ THE SOFTWARE.
 namespace PhoneDirect3DXamlAppComponent
 {
 
-
+public delegate void RenderThreadWorkItemHandler();
 
 [Windows::Foundation::Metadata::WebHostHidden]
 public ref class Direct3DInterop sealed : public Windows::Phone::Input::Interop::IDrawingSurfaceManipulationHandler
@@ -62,6 +62,8 @@ public:
     property Windows::Foundation::Size WindowBounds;
 
     void SetCocos2dEventDelegate(Cocos2dEventDelegate^ delegate);
+
+    event RenderThreadWorkItemHandler^ RenderThreadWorkItems;
 
 protected:
     // Event Handlers

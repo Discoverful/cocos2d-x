@@ -161,6 +161,18 @@ bool CCGLProgram::initWithPrecompiledProgramByteArray(const GLchar* vShaderByteA
 
     return haveProgram;
 }
+
+bool CCGLProgram::initWithPrecompiledByteArray(const GLvoid *precompiledByteArray, GLint length)
+{
+    m_uProgram = glCreateProgram();
+    glProgramBinaryOES(m_uProgram, GL_PROGRAM_BINARY_ANGLE, (const GLvoid*)precompiledByteArray, length);
+    CHECK_GL_ERROR_DEBUG();
+    m_uVertShader = m_uFragShader = 0;
+    m_hasShaderCompiler = false;
+    m_pHashForUniforms = NULL;
+    return true;
+}
+
 #endif
 
 bool CCGLProgram::initWithVertexShaderFilename(const char* vShaderFilename, const char* fShaderFilename)

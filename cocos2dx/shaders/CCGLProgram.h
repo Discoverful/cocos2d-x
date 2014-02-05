@@ -120,6 +120,7 @@ public:
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
     /** Initializes the CCGLProgram with precompiled shader program */
     bool initWithPrecompiledProgramByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
+    bool initWithPrecompiledByteArray(const GLvoid *precompiledByteArray, GLint length);
 #endif
     /** Initializes the CCGLProgram with a vertex and fragment with contents of filenames 
      * @js  init

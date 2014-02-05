@@ -41,7 +41,6 @@ USING_NS_CC;
 
 Cocos2dRenderer::Cocos2dRenderer(): mInitialized(false), m_loadingComplete(false), m_delegate(nullptr)
 {
-    mApp = new AppDelegate();
 }
 
 // Creates and restores Cocos2d-x after DirectX and Angle contexts are created or updated
@@ -72,15 +71,18 @@ void Cocos2dRenderer::CreateGLResources()
 
 void Cocos2dRenderer::Connect()
 {
+    mApp = new AppDelegate();
 }
 
 // purge Cocos2d-x gl GL resourses since the DirectX/Angle Context has been lost 
 void Cocos2dRenderer::Disconnect()
 {
-    CCDirector::sharedDirector()->pause(); 
-    CCDirector::sharedDirector()->purgeCachedData(); 
-    CloseAngle();
     m_loadingComplete = false;
+
+    delete mApp;
+    mApp = nullptr;
+
+    CloseAngle();
 }
 
 // save your game state here
